@@ -1,3 +1,9 @@
+package main;
+
+import model.Customer;
+import model.Movie;
+import model.Rental;
+
 import java.lang.*;
 import java.util.*;
 /**
@@ -15,7 +21,7 @@ public class Program
     {
         String result;
 
-        System.out.println("Welcome to the Movie Store");
+        System.out.println("Welcome to the model.Movie Store");
 
         Movie m1 = new Movie("movie1", 1);
         Movie m2 = new Movie("movie2", 2);

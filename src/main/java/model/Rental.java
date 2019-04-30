@@ -1,4 +1,6 @@
-class Rental {
+package model;
+
+public class Rental {
 
     private Movie movie;
     private int daysRented;
