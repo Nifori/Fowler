@@ -2,20 +2,16 @@ package model;
 
 public class Movie {
 
-    private String title;
-    private PriceCode priceCode;
+    private final String title;
+    private final PriceCode priceCode;
 
-    public Movie(String newtitle, PriceCode newpriceCode) {
-        title = newtitle;
-        priceCode = newpriceCode;
+    public Movie(String newTitle, PriceCode newPriceCode) {
+        title = newTitle;
+        priceCode = newPriceCode;
     }
 
     public PriceCode getPriceCode() {
         return priceCode;
-    }
-
-    public void setPriceCode(PriceCode arg) {
-        priceCode = arg;
     }
 
     public String getTitle (){

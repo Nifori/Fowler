@@ -2,7 +2,7 @@ package model;
 
 public enum PriceCode {
 
-    CHILDRENS,
+    CHILDREN,
     REGULAR,
     NEW_RELEASE,
     INVALID

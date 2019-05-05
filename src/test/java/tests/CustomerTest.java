@@ -14,14 +14,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 class CustomerTest {
 
-    public static final String TITEL = "Titel";
-    public static final String TEST_NAME = "testName";
+    private static final String TITEL = "Titel";
+    private static final String TEST_NAME = "testName";
 
     private Customer underTest;
 
     @Test
     void testAmountPriceCodeChildrenAbove3() {
-        Movie testMovie = new Movie(TITEL, PriceCode.CHILDRENS);
+        Movie testMovie = new Movie(TITEL, PriceCode.CHILDREN);
         Rental testRental = new Rental(testMovie, 5);
 
         underTest = new Customer(TEST_NAME);
@@ -60,7 +60,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeChildrenBelow3() {
-        Movie testMovie = new Movie(TITEL, PriceCode.CHILDRENS);
+        Movie testMovie = new Movie(TITEL, PriceCode.CHILDREN);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
@@ -106,7 +106,7 @@ class CustomerTest {
         underTest.addRental(testRental);
 
         String statement = underTest.statement();
-        String expectedStatement = "model.Rental Record for testName\n\tTitle\t\tDays\tAmount\n\tTitel\t\t2\t2.0\nAmount owed is 2.0\nYou earned 1 frequent renter points";
+        String expectedStatement = "Rental Record for testName\n\tTitle\t\tDays\tAmount\n\tTitel\t\t2\t2.0\nAmount owned is 2.0\nYou earned 1 frequent renter points";
 
         assertThat(statement, CoreMatchers.is(expectedStatement));
     }

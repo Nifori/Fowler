@@ -9,27 +9,24 @@ import static model.PriceCode.NEW_RELEASE;
 
 public class Customer {
 
-    private String name;
-    private List<Rental> rentals = new ArrayList<>();
+    private final String name;
+    private final List<Rental> rentals = new ArrayList<>();
 
-    public Customer(String newname) {
-        name = newname;
+    public Customer(String newName) {
+        name = newName;
     }
 
     public void addRental(Rental arg) {
         rentals.add(arg);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
+
         StringBuilder resultBuilder = new StringBuilder();
-        resultBuilder.append("model.Rental Record for ");
-        resultBuilder.append(this.getName());
+        resultBuilder.append("Rental Record for ");
+        resultBuilder.append(this.name);
         resultBuilder.append("\n");
 
         resultBuilder.append("\t");
@@ -42,9 +39,10 @@ public class Customer {
         resultBuilder.append("\n");
 
         for (Rental each : rentals) {
-            double thisAmount;
+
             //determine amounts for each line
-            thisAmount = amountFor(each);
+            double thisAmount = amountFor(each);
+
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
@@ -66,7 +64,7 @@ public class Customer {
 
         //add footer lines
 
-        resultBuilder.append("Amount owed is ");
+        resultBuilder.append("Amount owned is ");
         resultBuilder.append(totalAmount);
         resultBuilder.append("\n");
 
@@ -88,7 +86,7 @@ public class Customer {
             case NEW_RELEASE:
                 thisAmount += each.getDaysRented() * 3;
                 break;
-            case CHILDRENS:
+            case CHILDREN:
                 thisAmount += 1.5;
                 if (each.getDaysRented() > 3)
                     thisAmount += (each.getDaysRented() - 3) * 1.5;
