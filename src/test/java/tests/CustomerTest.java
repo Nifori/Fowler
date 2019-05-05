@@ -3,6 +3,7 @@ package tests;
 import Exceptions.InvalidPriceCodeException;
 import model.Customer;
 import model.Movie;
+import model.PriceCode;
 import model.Rental;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +21,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeChildrenAbove3() {
-        Movie testMovie = new Movie(TITEL, Movie.CHILDRENS);
+        Movie testMovie = new Movie(TITEL, PriceCode.CHILDRENS);
         Rental testRental = new Rental(testMovie, 5);
 
         underTest = new Customer(TEST_NAME);
@@ -33,7 +34,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeNewReleaseAbove3() {
-        Movie testMovie = new Movie(TITEL, Movie.NEW_RELEASE);
+        Movie testMovie = new Movie(TITEL, PriceCode.NEW_RELEASE);
         Rental testRental = new Rental(testMovie, 5);
 
         underTest = new Customer(TEST_NAME);
@@ -46,7 +47,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeRegularAbove3() {
-        Movie testMovie = new Movie(TITEL, Movie.REGULAR);
+        Movie testMovie = new Movie(TITEL, PriceCode.REGULAR);
         Rental testRental = new Rental(testMovie, 5);
 
         underTest = new Customer(TEST_NAME);
@@ -59,7 +60,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeChildrenBelow3() {
-        Movie testMovie = new Movie(TITEL, Movie.CHILDRENS);
+        Movie testMovie = new Movie(TITEL, PriceCode.CHILDRENS);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
@@ -72,7 +73,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeNewReleaseBelow3() {
-        Movie testMovie = new Movie(TITEL, Movie.NEW_RELEASE);
+        Movie testMovie = new Movie(TITEL, PriceCode.NEW_RELEASE);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
@@ -85,7 +86,7 @@ class CustomerTest {
 
     @Test
     void testAmountPriceCodeRegularBelow3() {
-        Movie testMovie = new Movie(TITEL, Movie.REGULAR);
+        Movie testMovie = new Movie(TITEL, PriceCode.REGULAR);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
@@ -98,7 +99,7 @@ class CustomerTest {
 
     @Test
     void testCustomerStatement() {
-        Movie testMovie = new Movie(TITEL, Movie.REGULAR);
+        Movie testMovie = new Movie(TITEL, PriceCode.REGULAR);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
@@ -112,8 +113,7 @@ class CustomerTest {
 
     @Test
     void testInvalidPriceCodeExceptionGetsThrown() {
-        int invalidPriceCode = 77;
-        Movie testMovie = new Movie(TITEL, invalidPriceCode);
+        Movie testMovie = new Movie(TITEL, PriceCode.INVALID);
         Rental testRental = new Rental(testMovie, 2);
 
         underTest = new Customer(TEST_NAME);
