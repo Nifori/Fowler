@@ -1,6 +1,6 @@
 package model;
 
-import Exceptions.InvalidPriceCodeException;
+import exceptions.InvalidPriceCodeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Customer {
         resultBuilder.append("\n");
 
         for (Rental each : rentals) {
-            double thisAmount = 0;
+            double thisAmount;
             //determine amounts for each line
             thisAmount = amountFor(each);
             // add frequent renter points
@@ -50,7 +50,7 @@ public class Customer {
             // add bonus for a two day new release rental
             if ((each.getMovie().getPriceCode() == NEW_RELEASE) && each.getDaysRented() > 1)
                 frequentRenterPoints++;
-            //show figures for this rentalw
+            //show figures for this rental
 
             resultBuilder.append("\t");
             resultBuilder.append(each.getMovie().getTitle());
@@ -58,7 +58,7 @@ public class Customer {
             resultBuilder.append("\t");
             resultBuilder.append(each.getDaysRented());
             resultBuilder.append("\t");
-            resultBuilder.append(String.valueOf(thisAmount));
+            resultBuilder.append(thisAmount);
             resultBuilder.append("\n");
 
             totalAmount += thisAmount;
@@ -67,11 +67,11 @@ public class Customer {
         //add footer lines
 
         resultBuilder.append("Amount owed is ");
-        resultBuilder.append(String.valueOf(totalAmount));
+        resultBuilder.append(totalAmount);
         resultBuilder.append("\n");
 
         resultBuilder.append("You earned ");
-        resultBuilder.append(String.valueOf(frequentRenterPoints));
+        resultBuilder.append(frequentRenterPoints);
         resultBuilder.append(" frequent renter points");
 
         return resultBuilder.toString();

@@ -1,6 +1,6 @@
 package tests;
 
-import Exceptions.InvalidPriceCodeException;
+import exceptions.InvalidPriceCodeException;
 import model.Customer;
 import model.Movie;
 import model.PriceCode;
@@ -118,9 +118,7 @@ class CustomerTest {
 
         underTest = new Customer(TEST_NAME);
 
-        Assertions.assertThrows(InvalidPriceCodeException.class, () -> {
-            underTest.amountFor(testRental);
-        });
+        Assertions.assertThrows(InvalidPriceCodeException.class, () -> underTest.amountFor(testRental));
     }
 
 }
