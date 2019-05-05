@@ -23,8 +23,20 @@ public class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        String result = "model.Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append("model.Rental Record for ");
+        resultBuilder.append(this.getName());
+        resultBuilder.append("\n");
+
+        resultBuilder.append("\t");
+        resultBuilder.append("Title");
+        resultBuilder.append("\t");
+        resultBuilder.append("\t");
+        resultBuilder.append("Days");
+        resultBuilder.append("\t");
+        resultBuilder.append("Amount");
+        resultBuilder.append("\n");
+
         for (Rental each: rentals             ) {
             double thisAmount = 0;
             //determine amounts for each line
@@ -35,14 +47,30 @@ public class Customer {
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
                 frequentRenterPoints ++;
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle()+ "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
+
+            resultBuilder.append("\t");
+            resultBuilder.append(each.getMovie().getTitle());
+            resultBuilder.append("\t");
+            resultBuilder.append("\t");
+            resultBuilder.append(each.getDaysRented());
+            resultBuilder.append("\t");
+            resultBuilder.append(String.valueOf(thisAmount) );
+            resultBuilder.append("\n");
+
             totalAmount += thisAmount;
         }
 
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-        return result;
+
+        resultBuilder.append("Amount owed is ");
+        resultBuilder.append(String.valueOf(totalAmount));
+        resultBuilder.append("\n");
+
+        resultBuilder.append("You earned ");
+        resultBuilder.append(String.valueOf(frequentRenterPoints));
+        resultBuilder.append(" frequent renter points");
+
+        return resultBuilder.toString();
     }
 
     public double amountFor(Rental each) {

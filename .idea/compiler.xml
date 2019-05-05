@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="10">
-      <module name="Fowler" target="1.5" />
+      <module name="Fowler" target="10" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
