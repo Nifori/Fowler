@@ -1,5 +1,7 @@
 package model;
 
+import Exceptions.InvalidPriceCodeException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class Customer {
     private String name;
     private List<Rental> rentals = new ArrayList<>();
 
-    public Customer (String newname){
+    public Customer(String newname) {
         name = newname;
     }
 
@@ -16,7 +18,7 @@ public class Customer {
         rentals.add(arg);
     }
 
-    public String getName (){
+    public String getName() {
         return name;
     }
 
@@ -37,15 +39,15 @@ public class Customer {
         resultBuilder.append("Amount");
         resultBuilder.append("\n");
 
-        for (Rental each: rentals             ) {
+        for (Rental each : rentals) {
             double thisAmount = 0;
             //determine amounts for each line
             thisAmount = amountFor(each);
             // add frequent renter points
-            frequentRenterPoints ++;
+            frequentRenterPoints++;
             // add bonus for a two day new release rental
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                frequentRenterPoints ++;
+                frequentRenterPoints++;
             //show figures for this rental
 
             resultBuilder.append("\t");
@@ -54,7 +56,7 @@ public class Customer {
             resultBuilder.append("\t");
             resultBuilder.append(each.getDaysRented());
             resultBuilder.append("\t");
-            resultBuilder.append(String.valueOf(thisAmount) );
+            resultBuilder.append(String.valueOf(thisAmount));
             resultBuilder.append("\n");
 
             totalAmount += thisAmount;
@@ -89,6 +91,8 @@ public class Customer {
                 if (each.getDaysRented() > 3)
                     thisAmount += (each.getDaysRented() - 3) * 1.5;
                 break;
+            default:
+                throw new InvalidPriceCodeException();
         }
         return thisAmount;
     }
